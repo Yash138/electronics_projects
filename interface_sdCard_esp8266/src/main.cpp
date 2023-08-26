@@ -1,3 +1,4 @@
+
 /*
   SD card datalogger
 
@@ -22,8 +23,10 @@
 
 #include <SPI.h>
 #include <SD.h>
-
-const int chipSelect = 10;
+// For Arduino UNO
+//const int chipSelect = 10;
+// For ESP8266
+const int chipSelect = D8;
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -53,7 +56,7 @@ void loop() {
 
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
-  File dataFile = SD.open("datalog2.csv", FILE_WRITE);
+  File dataFile = SD.open("datalog.csv", FILE_WRITE);
 
   // if the file is available, write to it:
   if (dataFile) {

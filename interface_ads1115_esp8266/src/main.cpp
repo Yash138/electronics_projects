@@ -7,7 +7,7 @@ ADS1115 ADS(0x48);
 
 void setup() 
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("Hello! DIY PROJECTS LAB"); 
 
   Serial.println(__FILE__);
