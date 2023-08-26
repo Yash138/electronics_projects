@@ -1,4 +1,3 @@
-
 /*
   SD card datalogger
 
@@ -21,8 +20,12 @@
 
 */
 #include <Arduino.h>
+#include "ADS1X15.h"
 #include <SPI.h>
 #include <SD.h>
+
+ADS1115 ADS(0x48);
+
 // For Arduino UNO
 //const int chipSelect = 10;
 // For ESP8266
@@ -41,31 +44,46 @@ void setup() {
     return;
   }
   Serial.println("card initialized.");  
+
+  Serial.println(__FILE__);
+  Serial.print("ADS1X15_LIB_VERSION: ");
+  Serial.println(ADS1X15_LIB_VERSION);
+  delay(1000);
+  ADS.begin();
 }
 
 void loop() {
-  // make a string for assembling the data to log:
-  String dataString = "12,14,30,23";
+  ADS.setGain(0);
 
-  // read three sensors and append to the string:
-  // for (int analogPin = 0; analogPin < 3; analogPin++) {
-  //   int sensor = analogRead(analogPin);
-  //   dataString += String(sensor);
-  //   if (analogPin < 2) { dataString += ","; }
-  // }
+  int16_t val_0 = ADS.readADC(0);  
+  int16_t val_1 = ADS.readADC(1);  
+  int16_t val_2 = ADS.readADC(2);  
+  int16_t val_3 = ADS.readADC(3);  
+
+  float f = ADS.toVoltage(1);  // voltage factor
+
+  // Serial.print("\tADC0: "); Serial.print(val_0); Serial.print('\t'); Serial.println(val_0 * f, 3);
+  // Serial.print("\tADC1: "); Serial.print(val_1); Serial.print('\t'); Serial.println(val_1 * f, 3);
+  // Serial.print("\tADC2: "); Serial.print(val_2); Serial.print('\t'); Serial.println(val_2 * f, 3);
+  // Serial.print("\tADC3: "); Serial.print(val_3); Serial.print('\t'); Serial.println(val_3 * f, 3);
+  // Serial.println();
+  
+  // make a string for assembling the data to log:
+  String dataString = String(val_0) + ',' + String(val_1) + ',' + String(val_2) + ',' + String(val_3) + ',' +
+                      String(val_0*f) + ',' + String(val_1*f) + ',' + String(val_2*f) + ',' + String(val_3*f);
 
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
-  File dataFile = SD.open("datalog.txt", FILE_WRITE);
+  File dataFile = SD.open("datalog.csv", FILE_WRITE);
 
   // if the file is available, write to it:
   if (dataFile) {
-    dataFile.println(dataString);
+    dataFile.println(dataString); 
     dataFile.close();
     // print to the serial port too:
     Serial.println(dataString);
   }
   // if the file isn't open, pop up an error:
-  else { Serial.println("error opening datalog.txt"); }
-  delay(50);
+  else { Serial.println("error opening datalog.csv"); }
+  delay(2000);
 }
