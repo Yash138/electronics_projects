@@ -1,0 +1,23 @@
+Git credentials:
+	username : Yash138
+	PAT : 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
+
+Arduino IOT Cloud 
+DeviceName : 
+	DataLogger
+Credentials:
+	Device ID : f64b6003-6a95-4b66-95f5-6bfd3e6cc762
+	Secret Key : EQXSX66ZRJQNVDF1TYCV
+
+
+
+Firebase 
+
+Credentials
+	Email : neucleosoft@gmail.com
+	Password : neucleosoft@mvd
+	UserUID : AmamuI0SZreYz5EJBWQvba6h0jk2
+	Web API Key : AIzaSyACAxNDla4mu-eTnQ6IxFj8hKc8CUg9stc
+	
+Realtime Database 
+	URL : https://esp-datalogger-c6389-default-rtdb.asia-southeast1.firebasedatabase.app
