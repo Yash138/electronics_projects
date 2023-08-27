@@ -62,11 +62,11 @@ void loop() {
 
   float f = ADS.toVoltage(1);  // voltage factor
 
-  // Serial.print("\tADC0: "); Serial.print(val_0); Serial.print('\t'); Serial.println(val_0 * f, 3);
-  // Serial.print("\tADC1: "); Serial.print(val_1); Serial.print('\t'); Serial.println(val_1 * f, 3);
-  // Serial.print("\tADC2: "); Serial.print(val_2); Serial.print('\t'); Serial.println(val_2 * f, 3);
-  // Serial.print("\tADC3: "); Serial.print(val_3); Serial.print('\t'); Serial.println(val_3 * f, 3);
-  // Serial.println();
+  Serial.print("\tADC0: "); Serial.print(val_0); Serial.print('\t'); Serial.println(val_0 * f, 3);
+  Serial.print("\tADC1: "); Serial.print(val_1); Serial.print('\t'); Serial.println(val_1 * f, 3);
+  Serial.print("\tADC2: "); Serial.print(val_2); Serial.print('\t'); Serial.println(val_2 * f, 3);
+  Serial.print("\tADC3: "); Serial.print(val_3); Serial.print('\t'); Serial.println(val_3 * f, 3);
+  Serial.println();
   
   // make a string for assembling the data to log:
   String dataString = String(val_0) + ',' + String(val_1) + ',' + String(val_2) + ',' + String(val_3) + ',' +
