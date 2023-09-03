@@ -5,6 +5,11 @@
   The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+/*
+  Important reference to implement multitasking on ESP8266 
+  https://medium.com/@srmq/cooperative-multitasking-on-the-esp8266-arduino-665a040457c8
+*/ 
+
 #include <Arduino.h>
 #include <FirebaseESP8266.h>
 #include <ESP8266WiFi.h>
